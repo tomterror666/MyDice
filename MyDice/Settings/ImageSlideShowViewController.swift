@@ -55,12 +55,12 @@ class ImageSlideShowViewController: UIViewController, ImageSlideshowDelegate {
         
         cleanupButton?.setTitle(NSLocalizedString("Cleanup", comment: ""), for: .normal)
         
-        selectedImageNameLabel?.text = NSLocalizedString("Chosen: ", comment: "") + (images.first ?? "")
+        selectedImageNameLabel?.text = NSLocalizedString("Chosen: ", comment: "") + NSLocalizedString(images.first ?? "", comment: "")
     }
     
     
     func imageSlideshow(_ imageSlideshow: ImageSlideshow, didChangeCurrentPageTo page: Int) {
-        selectedImageNameLabel?.text = NSLocalizedString("Chosen: ", comment: "") + images[page]
+        selectedImageNameLabel?.text = NSLocalizedString("Chosen: ", comment: "") + NSLocalizedString(images[page], comment: "")
         
         callingViewController?.backgroundImage = (UIImage(named: images[page]), images[page])
     }

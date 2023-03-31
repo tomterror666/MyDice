@@ -30,7 +30,7 @@ class DiceViewController: UIViewController {
         navigationController?.pushViewController(settingsController, animated: true)
     }
     
-    @IBAction func startToDice(_ sender: Any) {
+    @IBAction func startToDice(_ sender: Any?) {
         let currentDiceColor = myDices.first?.backgroundColor
         let currentDiceEyeColor = myDices.first?.eyeColor
         let currentDiceEyeBorderColor = myDices.first?.eyeBorderColor
@@ -68,41 +68,6 @@ class DiceViewController: UIViewController {
         }
     }
     
-    /*private func dice() {
-        var diceTime = 0.0
-        var waitTime: UInt32 = 10000
-        let currentDiceColor = myDices.first?.backgroundColor
-        let currentDiceEyeColor = myDices.first?.eyeColor
-        let currentDiceEyeBorderColor = myDices.first?.eyeBorderColor
-        
-        DispatchQueue.main.async {
-            self.myDices.forEach { diceView in
-                diceView.backgroundColor = UIColor(white: 0.9, alpha: 1)
-            }
-        }
-        
-        while diceTime < 5.0 {
-            myDices.forEach { dice in
-                DispatchQueue.main.async {
-                    dice.value = self.randomValue()
-                    print("gewürfelt:", dice.value, "wartend:", waitTime)
-                }
-            }
-            
-            diceTime += Double(waitTime) / 1000000
-            usleep(waitTime)
-            waitTime = UInt32(powl(Double(waitTime), 1.01))
-        }
-        
-        DispatchQueue.main.async {
-            self.myDices.forEach { diceView in
-                diceView.backgroundColor = currentDiceColor ?? .white
-                diceView.eyeColor = currentDiceEyeColor ?? .black
-                diceView.eyeBorderColor = currentDiceEyeBorderColor ?? .white
-            }
-        }
-    }*/
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -115,6 +80,8 @@ class DiceViewController: UIViewController {
         if let imageName = storage.string(forKey: backgroundImageNameStorageKey) {
             backgroundImageView?.image = UIImage(named: imageName)
         }
+        
+        becomeFirstResponder()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,6 +93,12 @@ class DiceViewController: UIViewController {
             let dicesNumber = (storage.value(forKey: diceNumberStorageKey) as? NSNumber)?.intValue ?? 1
             
             addDices(dicesNumber, value: 3)
+        }
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            startToDice(nil)
         }
     }
     
