@@ -1,0 +1,6 @@
+framework module Pods_MyDice {
+  umbrella header "Pods-MyDice-umbrella.h"
+
+  export *
+  module * { export * }
+}

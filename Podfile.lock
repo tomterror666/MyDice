@@ -1,0 +1,28 @@
+PODS:
+  - Colorful (3.0.0)
+  - ImageSlideshow (1.9.2):
+    - ImageSlideshow/Core (= 1.9.2)
+  - ImageSlideshow/Core (1.9.2)
+  - SDWebImage (5.15.5):
+    - SDWebImage/Core (= 5.15.5)
+  - SDWebImage/Core (5.15.5)
+
+DEPENDENCIES:
+  - Colorful
+  - ImageSlideshow
+  - SDWebImage
+
+SPEC REPOS:
+  trunk:
+    - Colorful
+    - ImageSlideshow
+    - SDWebImage
+
+SPEC CHECKSUMS:
+  Colorful: 9e093edacaa9fb73512ad9da157f0707b82d2542
+  ImageSlideshow: be305b54eaf2b2cfc7a7141c7c734605d44dc07d
+  SDWebImage: fd7e1a22f00303e058058278639bf6196ee431fe
+
+PODFILE CHECKSUM: 7acd2a992e0651507cc8bb9cc7d6f2b1c63a2ec9
+
+COCOAPODS: 1.12.0

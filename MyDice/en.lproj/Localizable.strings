@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  MyDice
+
+  Created by Andre Heß on 28.03.23.
+  
+*/
+"MyDice" = "My Dices";
+"Dice" = "Dice";
+"Settings" = "Settings";
+"Number of dices:" = "Number of dices:";
+"Select dice color" = "Select dice color";
+"Select dice eye color" = "Select dice eye color";
+"Select dice eye border color" = "Select dice eye border color";
+"Select background image" = "Select background image";
+"Dice Color" = "Dice Color";
+"Dice Eye Color" = "Dice Eye Color";
+"Dice Eye Border Color" = "Dice Eye Border Color";
+"Chosen: " = "Chosen: ";
+"Background Image" = "Background Image";
+"Cleanup" = "Cleanup";

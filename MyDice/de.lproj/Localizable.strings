@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  MyDice
+
+  Created by Andre Heß on 28.03.23.
+  
+*/
+"MyDice" = "Meine Würfel";
+"Dice" = "Würfeln";
+"Settings" = "Einstellungen";
+"Number of dices:" = "Anzahl der Würfel:";
+"Select dice color" = "Würfelfarbe auswählen";
+"Select dice eye color" = "Würfelaugenfarbe auswählen";
+"Select dice eye border color" = "Würfelaugenrandfarbe auswählen";
+"Select background image" = "Hintergrundbild auswählen";
+"Dice Color" = "Würfelfarbe";
+"Dice Eye Color" = "Würfelaugenfarbe";
+"Dice Eye Border Color" = "Würfelaugenrandfarbe";
+"Chosen: " = "Ausgewählt: ";
+"Background Image" = "Hintergrundbild";
+"Cleanup" = "Zurücksetzen";
