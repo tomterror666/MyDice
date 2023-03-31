@@ -31,40 +31,8 @@ class DiceViewController: UIViewController {
     }
     
     @IBAction func startToDice(_ sender: Any?) {
-        let currentDiceColor = myDices.first?.backgroundColor
-        let currentDiceEyeColor = myDices.first?.eyeColor
-        let currentDiceEyeBorderColor = myDices.first?.eyeBorderColor
-        
-        DispatchQueue.global(qos: .background).async {
-            var diceTime = 0.0
-            var waitTime: UInt32 = 10000
-            
-            DispatchQueue.main.async {
-                self.myDices.forEach { diceView in
-                    diceView.backgroundColor = UIColor(white: 0.9, alpha: 1)
-                }
-            }
-            
-            while diceTime < 5.0 {
-                self.myDices.forEach { dice in
-                    DispatchQueue.main.async {
-                        dice.value = self.randomValue()
-                        print("gewürfelt:", dice.value, "wartend:", waitTime)
-                    }
-                }
-                
-                diceTime += Double(waitTime) / 1000000
-                usleep(waitTime)
-                waitTime = UInt32(powl(Double(waitTime), 1.01))
-            }
-            
-            DispatchQueue.main.async {
-                self.myDices.forEach { diceView in
-                    diceView.backgroundColor = currentDiceColor ?? .white
-                    diceView.eyeColor = currentDiceEyeColor ?? .black
-                    diceView.eyeBorderColor = currentDiceEyeBorderColor ?? .white
-                }
-            }
+        myDices.forEach { diceView in
+            diceView.startToDice(maxDiceTime: randomValue(from: 1, to: 7))
         }
     }
     
@@ -120,9 +88,9 @@ class DiceViewController: UIViewController {
         navigationItem.backButtonTitle = ""
     }
     
-    private func randomValue() -> Int {
+    private func randomValue(from: Int, to: Int) -> Double {
         var seed = SystemRandomNumberGenerator()
-        return Int.random(in: 1...6, using: &seed)
+        return Double(Int.random(in: from...to, using: &seed))
     }
     
     func addDices(_ number: Int, value: Int = 7) {
@@ -144,7 +112,6 @@ class DiceViewController: UIViewController {
         
         if number == 1 {
             size = view.bounds.size.width - 80.0
-            //size = 200
         } else {
             size = (view.bounds.size.width - 120.0) / 2
         }

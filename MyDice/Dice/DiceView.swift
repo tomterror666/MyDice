@@ -232,4 +232,33 @@ class DiceView: UIView {
         
         super.setNeedsUpdateConstraints()
     }
+    
+    func startToDice(maxDiceTime: Double) {
+        let currentBackgroundColor = backgroundColor
+        backgroundColor = UIColor(white: 0.9, alpha: 1)
+        
+        DispatchQueue.global(qos: .background).async {
+            var diceTime = 0.0
+            var waitTime: UInt32 = 10000
+            
+            while diceTime < maxDiceTime {
+                DispatchQueue.main.async {
+                    self.value = self.randomValue()
+                }
+                
+                diceTime += Double(waitTime) / 1000000
+                usleep(waitTime)
+                waitTime = UInt32(powl(Double(waitTime), 1.01))
+            }
+            
+            DispatchQueue.main.async {
+                self.backgroundColor = currentBackgroundColor
+            }
+        }
+    }
+    
+    private func randomValue() -> Int {
+        var seed = SystemRandomNumberGenerator()
+        return Int.random(in: 1...6, using: &seed)
+    }
 }
