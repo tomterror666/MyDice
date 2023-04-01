@@ -44,6 +44,7 @@ class DiceViewController: UIViewController {
         setupNavigationBar()
         
         diceButton?.setTitle(NSLocalizedString("Dice", comment: ""), for: .normal)
+        diceButton?.layer.cornerRadius = 8
         
         if let imageName = storage.string(forKey: backgroundImageNameStorageKey) {
             backgroundImageView?.image = UIImage(named: imageName)
