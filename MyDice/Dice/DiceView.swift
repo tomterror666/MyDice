@@ -17,6 +17,10 @@ class DiceView: UIView {
     @IBOutlet var bottomLeft: UIView?
     @IBOutlet var bottomRight: UIView?
     
+    private var allEyes: NSMutableArray?
+    private var allDistanceConstraints: NSMutableArray = []
+    private var allSizeConstraints: NSMutableArray = []
+    
     @IBOutlet var topLeftTopConstraint: NSLayoutConstraint?
     @IBOutlet var topLeftLeadingConstraint: NSLayoutConstraint?
     @IBOutlet var topLeftWidthConstraint: NSLayoutConstraint?
@@ -53,6 +57,31 @@ class DiceView: UIView {
     @IBOutlet var bottomRightWidthConstraint: NSLayoutConstraint?
     @IBOutlet var bottomRightHeightConstraint: NSLayoutConstraint?
     
+    private func intToActiveEyes(value: Int) -> NSMutableArray {
+        if let tl = topLeft, let tr = topRight, let ml = midLeft, let mm = midMid, let mr = midRight, let bl = bottomLeft, let br = bottomRight {
+            switch value {
+            case 0:
+                return []
+            case 1:
+                return [mm]
+            case 2:
+                return [tl, br]
+            case 3:
+                return [tl, mm, br]
+            case 4:
+                return [tl, tr, bl, br]
+            case 5:
+                return [tl, tr, mm, bl, br]
+            case 6:
+                return [tl, tr, ml, mr, bl, br]
+            default:
+                return [tl, tr, ml, mm, mr, bl, br]
+            }
+        }
+        
+        return []
+    }
+    
     private var _value: Int = 0
     public var value: Int {
         get {
@@ -60,72 +89,14 @@ class DiceView: UIView {
         }
         set {
             _value = newValue
+
+            allEyes?.forEach({ eyeView in
+                (eyeView as! UIView).alpha = 0
+                print(eyeView)
+            })
             
-            switch newValue {
-            case 1:
-                topLeft?.alpha = 0.0
-                topRight?.alpha = 0.0
-                midLeft?.alpha = 0.0
-                midMid?.alpha = 1.0
-                midRight?.alpha = 0.0
-                bottomLeft?.alpha = 0.0
-                bottomRight?.alpha = 0.0
-            case 2:
-                topLeft?.alpha = 1.0
-                topRight?.alpha = 0.0
-                midLeft?.alpha = 0.0
-                midMid?.alpha = 0.0
-                midRight?.alpha = 0.0
-                bottomLeft?.alpha = 0.0
-                bottomRight?.alpha = 1.0
-            case 3:
-                topLeft?.alpha = 1.0
-                topRight?.alpha = 0.0
-                midLeft?.alpha = 0.0
-                midMid?.alpha = 1.0
-                midRight?.alpha = 0.0
-                bottomLeft?.alpha = 0.0
-                bottomRight?.alpha = 1.0
-            case 4:
-                topLeft?.alpha = 1.0
-                topRight?.alpha = 1.0
-                midLeft?.alpha = 0.0
-                midMid?.alpha = 0.0
-                midRight?.alpha = 0.0
-                bottomLeft?.alpha = 1.0
-                bottomRight?.alpha = 1.0
-            case 5:
-                topLeft?.alpha = 1.0
-                topRight?.alpha = 1.0
-                midLeft?.alpha = 0.0
-                midMid?.alpha = 1.0
-                midRight?.alpha = 0.0
-                bottomLeft?.alpha = 1.0
-                bottomRight?.alpha = 1.0
-            case 6:
-                topLeft?.alpha = 1.0
-                topRight?.alpha = 1.0
-                midLeft?.alpha = 1.0
-                midMid?.alpha = 0.0
-                midRight?.alpha = 1.0
-                bottomLeft?.alpha = 1.0
-                bottomRight?.alpha = 1.0
-            case 7:
-                topLeft?.alpha = 1.0
-                topRight?.alpha = 1.0
-                midLeft?.alpha = 1.0
-                midMid?.alpha = 1.0
-                midRight?.alpha = 1.0
-                bottomLeft?.alpha = 1.0
-                bottomRight?.alpha = 1.0
-            default:
-                topLeft?.alpha = 0.0
-                topRight?.alpha = 0.0
-                midLeft?.alpha = 0.0
-                midMid?.alpha = 0.0
-                midRight?.alpha = 0.0
-                bottomLeft?.alpha = 0.0
-                bottomRight?.alpha = 0.0
+            intToActiveEyes(value: newValue).forEach { eyeView in
+                (eyeView as! UIView).alpha = 1
             }
         }
     }
@@ -166,65 +137,29 @@ class DiceView: UIView {
         }
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        allEyes = [topLeft!, topRight!, midLeft!, midMid!, midRight!, bottomLeft!, bottomRight!]
+        allDistanceConstraints = [topLeftTopConstraint!, topLeftLeadingConstraint!, topRightTopConstraint!, topRightTrailingConstraint!, midLeftTopConstraint!, midLeftLeadingConstraint!, midMidLeadingConstraint!, midMidTrailingConstraint!, midRightTopConstraint!, midRightTrailingConstraint!, bottomLeftTopConstraint!, bottomLeftLeadingConstraint!, bottomRightTopConstraint!, bottomRightTrailingConstraint!]
+        allSizeConstraints = [topLeftWidthConstraint!, topLeftHeightConstraint!, topRightWidthConstraint!, topRightHeightConstraint!, midLeftWidthConstraint!, midLeftHeightConstraint!, midMidWidthConstraint!, midMidHeightConstraint!, midRightWidthConstraint!, midRightHeightConstraint!, bottomLeftWidthConstraint!, bottomLeftHeightConstraint!, bottomRightWidthConstraint!, bottomRightHeightConstraint!]
+    }
+    
     override func setNeedsUpdateConstraints() {
         let size = bounds.size.width / 5
         let distance = size / 2
         
-        topLeftTopConstraint?.constant = distance
-        topLeftLeadingConstraint?.constant = distance
-        topLeftWidthConstraint?.constant = size
-        topLeftHeightConstraint?.constant = size
-        topLeft?.layer.cornerRadius = size / 2
-        topLeft?.layer.borderColor = UIColor.black.cgColor
-        topLeft?.layer.borderWidth = size / 20
+        allEyes?.forEach({ eyeView in
+            (eyeView as! UIView).layer.cornerRadius = size / 2
+            (eyeView as! UIView).layer.borderWidth = size / 20
+        })
         
-        topRightTopConstraint?.constant = distance
-        topRightTrailingConstraint?.constant = distance
-        topRightWidthConstraint?.constant = size
-        topRightHeightConstraint?.constant = size
-        topRight?.layer.cornerRadius = size / 2
-        topRight?.layer.borderColor = UIColor.black.cgColor
-        topRight?.layer.borderWidth = size / 20
-        
-        midLeftTopConstraint?.constant = distance
-        midLeftLeadingConstraint?.constant = distance
-        midLeftWidthConstraint?.constant = size
-        midLeftHeightConstraint?.constant = size
-        midLeft?.layer.cornerRadius = size / 2
-        midLeft?.layer.borderColor = UIColor.black.cgColor
-        midLeft?.layer.borderWidth = size / 20
-        
-        midMidLeadingConstraint?.constant = distance
-        midMidTrailingConstraint?.constant = distance
-        midMidWidthConstraint?.constant = size
-        midMidHeightConstraint?.constant = size
-        midMid?.layer.cornerRadius = size / 2
-        midMid?.layer.borderColor = UIColor.black.cgColor
-        midMid?.layer.borderWidth = size / 20
-        
-        midRightTopConstraint?.constant = distance
-        midRightTrailingConstraint?.constant = distance
-        midRightWidthConstraint?.constant = size
-        midRightHeightConstraint?.constant = size
-        midRight?.layer.cornerRadius = size / 2
-        midRight?.layer.borderColor = UIColor.black.cgColor
-        midRight?.layer.borderWidth = size / 20
-    
-        bottomLeftTopConstraint?.constant = distance
-        bottomLeftLeadingConstraint?.constant = distance
-        bottomLeftWidthConstraint?.constant = size
-        bottomLeftHeightConstraint?.constant = size
-        bottomLeft?.layer.cornerRadius = size / 2
-        bottomLeft?.layer.borderColor = UIColor.black.cgColor
-        bottomLeft?.layer.borderWidth = size / 20
-        
-        bottomRightTopConstraint?.constant = distance
-        bottomRightTrailingConstraint?.constant = distance
-        bottomRightWidthConstraint?.constant = size
-        bottomRightHeightConstraint?.constant = size
-        bottomRight?.layer.cornerRadius = size / 2
-        bottomRight?.layer.borderColor = UIColor.black.cgColor
-        bottomRight?.layer.borderWidth = size / 20
+        allDistanceConstraints.forEach { constraint in
+            (constraint as! NSLayoutConstraint).constant = distance
+        }
+        allSizeConstraints.forEach { constraint in
+            (constraint as! NSLayoutConstraint).constant = size
+        }
         
         layer.cornerRadius = 8
         layer.borderColor = UIColor.black.cgColor
