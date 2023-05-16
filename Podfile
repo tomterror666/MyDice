@@ -19,4 +19,5 @@ target 'MyDice' do
   pod "Colorful"
   pod "SDWebImage"
   pod "ImageSlideshow"
+  pod "GMStepper"
 end

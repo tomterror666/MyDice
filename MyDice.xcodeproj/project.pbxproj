@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7A45CC0832AC5E3057FDE428 /* Pods_MyDice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 641F70963047D11EFA14C9E1 /* Pods_MyDice.framework */; };
+		E829E42929FD8C300053391D /* UIWindowScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829E42829FD8C300053391D /* UIWindowScene.swift */; };
 		E86AFF8F29D36E0B0048F699 /* ImageSlideShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86AFF8D29D36E0B0048F699 /* ImageSlideShowViewController.swift */; };
 		E86AFF9029D36E0B0048F699 /* ImageSlideShowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86AFF8E29D36E0B0048F699 /* ImageSlideShowViewController.xib */; };
 		E86AFF9829D37D810048F699 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E86AFF9A29D37D810048F699 /* Localizable.strings */; };
@@ -37,6 +38,7 @@
 		4AA0E4DBAA5125065FF030B4 /* Pods-MyDice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyDice.debug.xcconfig"; path = "Target Support Files/Pods-MyDice/Pods-MyDice.debug.xcconfig"; sourceTree = "<group>"; };
 		641F70963047D11EFA14C9E1 /* Pods_MyDice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyDice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79227C8627A02CBCE2787FDF /* Pods-MyDice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyDice.release.xcconfig"; path = "Target Support Files/Pods-MyDice/Pods-MyDice.release.xcconfig"; sourceTree = "<group>"; };
+		E829E42829FD8C300053391D /* UIWindowScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowScene.swift; sourceTree = "<group>"; };
 		E86AFF8D29D36E0B0048F699 /* ImageSlideShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSlideShowViewController.swift; sourceTree = "<group>"; };
 		E86AFF8E29D36E0B0048F699 /* ImageSlideShowViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageSlideShowViewController.xib; sourceTree = "<group>"; };
 		E86AFF9429D37CEE0048F699 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				E8E41BDB29D0CEB500619BB3 /* Data.swift */,
 				E8E41BDD29D0CEED00619BB3 /* Numeric.swift */,
 				E8E41BDF29D0CF1C00619BB3 /* UserDefaults.swift */,
+				E829E42829FD8C300053391D /* UIWindowScene.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				E8E1FE2929CF75E6001E8E7A /* AppDelegate.swift in Sources */,
 				E8CBAD1329CF7EF300CB2276 /* DiceViewController.swift in Sources */,
 				E8E41BDE29D0CEED00619BB3 /* Numeric.swift in Sources */,
+				E829E42929FD8C300053391D /* UIWindowScene.swift in Sources */,
 				E8CBAD1229CF7EF300CB2276 /* UINavigationController.swift in Sources */,
 				E86AFF8F29D36E0B0048F699 /* ImageSlideShowViewController.swift in Sources */,
 				E8E1FE2B29CF75E6001E8E7A /* SceneDelegate.swift in Sources */,

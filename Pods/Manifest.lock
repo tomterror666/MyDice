@@ -1,5 +1,6 @@
 PODS:
   - Colorful (3.0.0)
+  - GMStepper (2.2)
   - ImageSlideshow (1.9.2):
     - ImageSlideshow/Core (= 1.9.2)
   - ImageSlideshow/Core (1.9.2)
@@ -9,20 +10,23 @@ PODS:
 
 DEPENDENCIES:
   - Colorful
+  - GMStepper
   - ImageSlideshow
   - SDWebImage
 
 SPEC REPOS:
   trunk:
     - Colorful
+    - GMStepper
     - ImageSlideshow
     - SDWebImage
 
 SPEC CHECKSUMS:
   Colorful: 9e093edacaa9fb73512ad9da157f0707b82d2542
+  GMStepper: 89fb106944dfcc3aa3add7164e3ebd463ea2104b
   ImageSlideshow: be305b54eaf2b2cfc7a7141c7c734605d44dc07d
   SDWebImage: fd7e1a22f00303e058058278639bf6196ee431fe
 
-PODFILE CHECKSUM: 8741ddf5afa4e995eb70ddefb75602ec7f205689
+PODFILE CHECKSUM: a172d884fabad1972c8bd01e8cc62c18da09fb59
 
 COCOAPODS: 1.12.0

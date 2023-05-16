@@ -25,4 +25,15 @@ extension UIColor {
         guard let rgba = rgba else { return nil }
         return rgba.red.data + rgba.green.data + rgba.blue.data + rgba.alpha.data
     }
+    
+    static func grayColorArray(count: Int, step: CGFloat) -> [UIColor] {
+        var grayValues: CGFloat = 0;
+        var colors: [UIColor] = []
+        for _ in 1...count {
+            colors.append(UIColor(red: grayValues, green: grayValues, blue: grayValues, alpha: 1))
+            grayValues += step
+        }
+        
+        return colors
+    }
 }

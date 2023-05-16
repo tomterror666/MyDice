@@ -7,13 +7,17 @@
 
 import UIKit
 import ImageSlideshow
+import GMStepper
 
-class SettingsViewController: UIViewController {
+let MAX_DICES = 100
+
+class SettingsViewController: UIViewController, UIColorPickerViewControllerDelegate {
     
     @IBOutlet var numberOfDicesLabel: UILabel?
     @IBOutlet var numberOfDicesValue: UILabel?
-    @IBOutlet var numberOfDicesUpButton: UIButton?
-    @IBOutlet var numberOfDicesDownButton: UIButton?
+    //@IBOutlet var numberOfDicesUpButton: UIButton?
+    //@IBOutlet var numberOfDicesDownButton: UIButton?
+    @IBOutlet var numberOfDicesStepper: GMStepper?
     @IBOutlet var selectDiceColorsView: UIView?
     @IBOutlet var selectDiceColorsLabel: UILabel?
     @IBOutlet var selectDiceColorsValueView: UIView?
@@ -34,6 +38,7 @@ class SettingsViewController: UIViewController {
     var numberOfDices = 1
     
     public var callingDiceController: DiceViewController?
+    public var mode: ColorSelectionMode = .dice
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +53,7 @@ class SettingsViewController: UIViewController {
         numberOfDicesLabel?.text = NSLocalizedString("Number of dices:", comment: "")
         numberOfDicesValue?.text = String(numberOfDices)
         
-        numberOfDicesUpButton?.setTitle("\u{25B2}", for: .normal)
+        /*numberOfDicesUpButton?.setTitle("\u{25B2}", for: .normal)
         numberOfDicesUpButton?.layer.borderColor = UIColor.gray.cgColor
         numberOfDicesUpButton?.layer.borderWidth = 1
         numberOfDicesUpButton?.backgroundColor = .lightGray
@@ -60,7 +65,9 @@ class SettingsViewController: UIViewController {
         numberOfDicesDownButton?.layer.borderWidth = 1
         numberOfDicesDownButton?.backgroundColor = .lightGray
         numberOfDicesDownButton?.setTitleColor(.white, for: .normal)
-        numberOfDicesDownButton?.setTitleColor(.lightText, for: .highlighted)
+        numberOfDicesDownButton?.setTitleColor(.lightText, for: .highlighted)*/
+        
+        numberOfDicesStepper?.value = Double(numberOfDices)
         
         selectDiceColorsView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleOpenDiceColorSelection)))
         selectDiceColorsView?.isUserInteractionEnabled = true
@@ -93,8 +100,8 @@ class SettingsViewController: UIViewController {
         selectBackgroundImageIconLabel?.text = "\u{27A4}"
     }
     
-    @IBAction func incNumberOfDices() {
-        if numberOfDices < 6 {
+    /*@IBAction func incNumberOfDices() {
+        if numberOfDices < MAX_DICES {
             numberOfDices += 1
             numberOfDicesValue?.text = String(numberOfDices)
             
@@ -109,30 +116,46 @@ class SettingsViewController: UIViewController {
             
             callingDiceController?.addDices(numberOfDices)
         }
+    }*/
+    
+    @IBAction func stepperValueDidChange(_ sender: GMStepper) {
+        numberOfDices = Int(sender.value)
+        
+        numberOfDicesValue?.text = String(numberOfDices)
+        callingDiceController?.addDices(numberOfDices)
     }
 
     @objc func handleOpenDiceColorSelection(_: AnyObject) {
-        let controller = ColorSelectionViewController(nibName: "ColorSelectionViewController", bundle: nil)
-        controller.mode = .dice
-        controller.initColorValue = callingDiceController?.diceColor ?? .white
-        controller.callingDiceController = callingDiceController
-        navigationController?.pushViewController(controller, animated: true)
+        mode = .dice
+        let colorPicker = UIColorPickerViewController()
+        colorPicker.delegate = self
+        colorPicker.modalPresentationStyle = .popover
+        colorPicker.popoverPresentationController?.sourceView = view
+        colorPicker.popoverPresentationController?.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 0, height: 0)
+        colorPicker.popoverPresentationController?.permittedArrowDirections = []
+        present(colorPicker, animated: true, completion: nil);
     }
     
     @objc func handleOpenDiceEyeColorSelection(_: AnyObject) {
-        let controller = ColorSelectionViewController(nibName: "ColorSelectionViewController", bundle: nil)
-        controller.mode = .diceEye
-        controller.initColorValue = callingDiceController?.diceEyeColor ?? .black
-        controller.callingDiceController = callingDiceController
-        navigationController?.pushViewController(controller, animated: true)
+        mode = .diceEye
+        let colorPicker = UIColorPickerViewController()
+        colorPicker.delegate = self
+        colorPicker.modalPresentationStyle = .popover
+        colorPicker.popoverPresentationController?.sourceView = view
+        colorPicker.popoverPresentationController?.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 0, height: 0)
+        colorPicker.popoverPresentationController?.permittedArrowDirections = []
+        present(colorPicker, animated: true, completion: nil);
     }
     
     @objc func handleOpenDiceEyeBorderColorSelection(_: AnyObject) {
-        let controller = ColorSelectionViewController(nibName: "ColorSelectionViewController", bundle: nil)
-        controller.mode = .diceEyeBorder
-        controller.initColorValue = callingDiceController?.diceEyeBorderColor ?? .white
-        controller.callingDiceController = callingDiceController
-        navigationController?.pushViewController(controller, animated: true)
+        mode = .diceEyeBorder
+        let colorPicker = UIColorPickerViewController()
+        colorPicker.delegate = self
+        colorPicker.modalPresentationStyle = .popover
+        colorPicker.popoverPresentationController?.sourceView = view
+        colorPicker.popoverPresentationController?.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 0, height: 0)
+        colorPicker.popoverPresentationController?.permittedArrowDirections = []
+        present(colorPicker, animated: true, completion: nil);
     }
     
     @objc func handleOpenBackgroundSelection(_: AnyObject) {
@@ -140,5 +163,21 @@ class SettingsViewController: UIViewController {
         callingDiceController?.backgroundImage = (UIImage(named: controller.images[0]), controller.images[0])
         controller.callingViewController = callingDiceController
         navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelect color: UIColor, continuously: Bool) {
+        let selectedColor = viewController.selectedColor
+
+        switch mode {
+        case .dice:
+            callingDiceController?.diceColor = selectedColor
+            selectDiceColorsValueView?.backgroundColor = selectedColor
+        case .diceEye:
+            callingDiceController?.diceEyeColor = selectedColor
+            selectDiceEyeColorsValueView?.backgroundColor = selectedColor
+        case .diceEyeBorder:
+            callingDiceController?.diceEyeBorderColor = selectedColor
+            selectDiceEyeBorderColorsValueView?.backgroundColor = selectedColor
+        }
     }
 }

@@ -4,7 +4,64 @@
 //
 //  Created by Andre Heß on 25.03.23.
 //
+import UIKit
 
+enum ColorSelectionMode: String {
+    case dice = "Dice"
+    case diceEye = "DiceEye"
+    case diceEyeBorder = "DiceEyeBorder"
+}
+
+class ColorSelectionViewController: UIViewController, UIColorPickerViewControllerDelegate {
+    
+    public var mode: ColorSelectionMode = .dice
+    public var initColorValue: UIColor = .black
+    public var callingDiceController: DiceViewController?
+    
+    
+    @IBOutlet weak var colorView: UIView?
+    @IBOutlet weak var graySwitch: UISwitch?
+    
+    var selectedColor: UIColor = .white
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    
+        let colorPicker = UIColorPickerViewController()
+        colorPicker.delegate = self
+        colorPicker.modalPresentationStyle = .popover
+        colorPicker.popoverPresentationController?.sourceView = view
+        colorPicker.popoverPresentationController?.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 0, height: 0)
+        colorPicker.popoverPresentationController?.permittedArrowDirections = []
+        present(colorPicker, animated: true, completion: nil);
+    }
+    
+    @IBAction func cooseColorButtonTouched(_ sender: UIButton) {
+        let colorPicker = UIColorPickerViewController()
+        colorPicker.delegate = self
+        present(colorPicker, animated: true, completion: nil);
+    }
+    
+    @IBAction func graySwitchValueChanged(_ sender: UIButton) {
+        updateColorView();
+    }
+    
+    func updateColorView() {
+        /*if let graySwitch = graySwitch, graySwitch.isOn {
+            let grayColors = UIColor.grayColorArray(count: 100, step: 0.01)
+            selectedColor = grayColors.first ?? .white
+            colorView?.backgroundColor = selectedColor
+        } else {print("Selected color: \(selectedColor)")*/
+            colorView?.backgroundColor = selectedColor
+        //}
+    }
+    
+    func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelect color: UIColor, continuously: Bool) {
+        selectedColor = viewController.selectedColor
+        updateColorView()
+    }
+}
+/*
 import UIKit
 import Colorful
 
@@ -56,3 +113,4 @@ class ColorSelectionViewController: UIViewController {
         }
     }
 }
+*/

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
@@ -14,23 +14,22 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wurfel" translatesAutoresizingMaskIntoConstraints="NO" id="dA8-bl-PN1">
-                                <rect key="frame" x="76.666666666666686" y="306" width="240" height="240"/>
+                                <rect key="frame" x="0.0" y="124" width="320" height="320"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="GQK-zI-O6M"/>
-                                    <constraint firstAttribute="width" secondItem="dA8-bl-PN1" secondAttribute="height" multiplier="1:1" id="cuw-KT-8jr"/>
-                                    <constraint firstAttribute="height" constant="240" id="rw6-Mb-fzF"/>
+                                    <constraint firstAttribute="width" secondItem="dA8-bl-PN1" secondAttribute="height" multiplier="1:1" id="OAH-Uv-9MC"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="dA8-bl-PN1" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="6Az-H3-bFU"/>
-                            <constraint firstItem="dA8-bl-PN1" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="ppE-TN-iPB"/>
+                            <constraint firstItem="dA8-bl-PN1" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="KKw-jV-j4Q"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dA8-bl-PN1" secondAttribute="trailing" id="N6E-aE-m63"/>
+                            <constraint firstItem="dA8-bl-PN1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="VsR-qx-6WN"/>
                         </constraints>
                     </view>
                 </viewController>

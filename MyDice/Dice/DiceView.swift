@@ -92,7 +92,6 @@ class DiceView: UIView {
 
             allEyes?.forEach({ eyeView in
                 (eyeView as! UIView).alpha = 0
-                print(eyeView)
             })
             
             intToActiveEyes(value: newValue).forEach { eyeView in
