@@ -28,7 +28,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WTU-vL-aFR">
                     <rect key="frame" x="225" y="513" width="75" height="35"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="tinted" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
                     <connections>
                         <action selector="cleanup:" destination="-1" eventType="touchUpInside" id="x2H-JJ-U5I"/>
                     </connections>

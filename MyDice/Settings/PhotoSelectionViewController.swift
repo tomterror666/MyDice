@@ -49,11 +49,19 @@ class PhotoSelectionViewController: UIViewController, ImageSlideshowDelegate {
         }
     }
     
-    private func fetchPhotosFromLibrary() {
+    @objc private func fetchPhotosFromLibrary() {
+        if !Thread.isMainThread {
+            performSelector(onMainThread: #selector(fetchPhotosFromLibrary), with: nil, waitUntilDone: true)
+            
+            return
+        }
+        
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)] // Sort by creation date, newest first
         
         let fetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+        let scenes = UIApplication.shared.connectedScenes as? Set<UIWindowScene>
+        guard let screenSize = scenes?.first?.currentScreenSize() else { return }
         
         // Process the fetched assets
         fetchResult.enumerateObjects { asset, _, _ in
@@ -61,7 +69,7 @@ class PhotoSelectionViewController: UIViewController, ImageSlideshowDelegate {
             let requestOptions = PHImageRequestOptions()
             requestOptions.isSynchronous = true
             
-            imageManager.requestImage(for: asset, targetSize: CGSize(width: 200, height: 200), contentMode: .aspectFit, options: requestOptions) { image, _ in
+            imageManager.requestImage(for: asset, targetSize: screenSize, contentMode: .aspectFit, options: requestOptions) { image, _ in
                 if let image = image {
                     self.photos.append((image, asset.localIdentifier))
                 }

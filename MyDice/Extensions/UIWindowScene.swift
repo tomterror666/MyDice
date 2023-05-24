@@ -33,7 +33,7 @@ extension UIWindowScene {
         
         if numberOfElements == 0 {return DicesRatio((0, 0, 0.0))}
         if numberOfElements == 1 {return DicesRatio((1, 1, width))}
-            
+        
         let maxHeight = screenSize.height / screen.scale - 2 * outerDistance - topDistance - bottomDistance
         let endVal = Int(ceil(sqrt(Double(numberOfElements))))
         
@@ -55,5 +55,13 @@ extension UIWindowScene {
         let scale = screen.scale
         
         return round(value * scale) / scale
+    }
+    
+    func currentScreenSize() -> CGSize {
+        if let mainScreen = self.windows.first?.screen {
+            return CGSize(width: mainScreen.bounds.width * mainScreen.scale, height: mainScreen.bounds.size.height * mainScreen.scale)
+        } else {
+            return .zero
+        }
     }
 }

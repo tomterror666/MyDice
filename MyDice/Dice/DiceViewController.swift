@@ -205,6 +205,8 @@ class DiceViewController: UIViewController {
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)] // Sort by creation date, newest first
         
         let fetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+        let scenes = UIApplication.shared.connectedScenes as? Set<UIWindowScene>
+        guard let screenSize = scenes?.first?.currentScreenSize() else { return }
         
         // Process the fetched assets
         fetchResult.enumerateObjects { asset, _, stop in
@@ -214,7 +216,7 @@ class DiceViewController: UIViewController {
                 let requestOptions = PHImageRequestOptions()
                 requestOptions.isSynchronous = true
                 
-                imageManager.requestImage(for: asset, targetSize: CGSize(width: 200, height: 200), contentMode: .aspectFit, options: requestOptions) { image, _ in
+                imageManager.requestImage(for: asset, targetSize: screenSize, contentMode: .aspectFit, options: requestOptions) { image, _ in
                     if let image = image {
                         DispatchQueue.main.async {
                             self.backgroundImageView?.image = image
