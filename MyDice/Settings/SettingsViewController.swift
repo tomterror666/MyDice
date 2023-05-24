@@ -11,12 +11,16 @@ import GMStepper
 
 let MAX_DICES = 100
 
+enum ColorSelectionMode {
+    case dice
+    case diceEye
+    case diceEyeBorder
+}
+
 class SettingsViewController: UIViewController, UIColorPickerViewControllerDelegate {
     
     @IBOutlet var numberOfDicesLabel: UILabel?
     @IBOutlet var numberOfDicesValue: UILabel?
-    //@IBOutlet var numberOfDicesUpButton: UIButton?
-    //@IBOutlet var numberOfDicesDownButton: UIButton?
     @IBOutlet var numberOfDicesStepper: GMStepper?
     @IBOutlet var selectDiceColorsView: UIView?
     @IBOutlet var selectDiceColorsLabel: UILabel?
@@ -53,20 +57,6 @@ class SettingsViewController: UIViewController, UIColorPickerViewControllerDeleg
         numberOfDicesLabel?.text = NSLocalizedString("Number of dices:", comment: "")
         numberOfDicesValue?.text = String(numberOfDices)
         
-        /*numberOfDicesUpButton?.setTitle("\u{25B2}", for: .normal)
-        numberOfDicesUpButton?.layer.borderColor = UIColor.gray.cgColor
-        numberOfDicesUpButton?.layer.borderWidth = 1
-        numberOfDicesUpButton?.backgroundColor = .lightGray
-        numberOfDicesUpButton?.setTitleColor(.white, for: .normal)
-        numberOfDicesUpButton?.setTitleColor(.lightText, for: .highlighted)
-        
-        numberOfDicesDownButton?.setTitle("\u{25BC}", for: .normal)
-        numberOfDicesDownButton?.layer.borderColor = UIColor.gray.cgColor
-        numberOfDicesDownButton?.layer.borderWidth = 1
-        numberOfDicesDownButton?.backgroundColor = .lightGray
-        numberOfDicesDownButton?.setTitleColor(.white, for: .normal)
-        numberOfDicesDownButton?.setTitleColor(.lightText, for: .highlighted)*/
-        
         numberOfDicesStepper?.value = Double(numberOfDices)
         
         selectDiceColorsView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleOpenDiceColorSelection)))
@@ -99,24 +89,6 @@ class SettingsViewController: UIViewController, UIColorPickerViewControllerDeleg
         selectBackgroundImageValueView?.image = callingDiceController?.backgroundImage.0
         selectBackgroundImageIconLabel?.text = "\u{27A4}"
     }
-    
-    /*@IBAction func incNumberOfDices() {
-        if numberOfDices < MAX_DICES {
-            numberOfDices += 1
-            numberOfDicesValue?.text = String(numberOfDices)
-            
-            callingDiceController?.addDices(numberOfDices)
-        }
-    }
-    
-    @IBAction func decNumberOfDices() {
-        if numberOfDices > 1 {
-            numberOfDices -= 1
-            numberOfDicesValue?.text = String(numberOfDices)
-            
-            callingDiceController?.addDices(numberOfDices)
-        }
-    }*/
     
     @IBAction func stepperValueDidChange(_ sender: GMStepper) {
         numberOfDices = Int(sender.value)

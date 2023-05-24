@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Photos
 
 class DiceViewController: UIViewController {
     
@@ -47,35 +48,16 @@ class DiceViewController: UIViewController {
         diceButton?.layer.cornerRadius = 8
         
         if let imageName = storage.string(forKey: backgroundImageNameStorageKey) {
-            backgroundImageView?.image = UIImage(named: imageName)
+            if let image = UIImage(named: imageName) {
+                backgroundImageView?.image = image
+            } else {
+                checkFetchedPhotosFromLibraryAndSetBackground(imageName)
+            }
         }
         
         becomeFirstResponder()
     }
 
-    /*func getPiecesRatio(numberOfElements: Int, outerDistance: CGFloat, innerDistance: CGFloat) -> (Int, Int) {
-        if numberOfElements == 0 {return (0, 0)}
-        if numberOfElements == 1 {return (1, 1)}
-            
-        let scenes = UIApplication.shared.connectedScenes as? Set<UIWindowScene>
-        guard let windows = scenes?.first?.windows,
-              let screenSize = windows.first?.screen.currentMode?.size else { return (0, 0) }
-        let width = screenSize.width - 2 * outerDistance
-        let maxHeight = screenSize.height - 2 * outerDistance
-        let endVal = Int(ceil(sqrt(Double(numberOfElements))))
-        
-        for counter in (1...endVal) {
-            let usedElementWidth = (width - CGFloat((counter - 1)) * innerDistance) / CGFloat(counter)
-            let resultingHeight = ceil(CGFloat(numberOfElements) / CGFloat(counter)) * usedElementWidth
-            
-            if resultingHeight < maxHeight {
-                return (counter, numberOfElements % counter > 0 ? numberOfElements / counter + 1 : numberOfElements / counter)
-            }
-        }
-        
-        return (0, 0)
-    }*/
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -210,6 +192,33 @@ class DiceViewController: UIViewController {
             backgroundImageView?.image = newValue.0
             
             storage.setValue(newValue.1, forKey: backgroundImageNameStorageKey)
+        }
+    }
+    
+    private func checkFetchedPhotosFromLibraryAndSetBackground(_ name: String) {
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)] // Sort by creation date, newest first
+        
+        let fetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+        
+        // Process the fetched assets
+        fetchResult.enumerateObjects { asset, _, stop in
+            print("Check name: \(asset.localIdentifier) by \(name)")
+            if asset.localIdentifier == name {
+                let imageManager = PHImageManager.default()
+                let requestOptions = PHImageRequestOptions()
+                requestOptions.isSynchronous = true
+                
+                imageManager.requestImage(for: asset, targetSize: CGSize(width: 200, height: 200), contentMode: .aspectFit, options: requestOptions) { image, _ in
+                    if let image = image {
+                        DispatchQueue.main.async {
+                            self.backgroundImageView?.image = image
+                        }
+                    }
+                }
+                
+                stop.pointee = true
+            }
         }
     }
 }

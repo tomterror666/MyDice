@@ -15,13 +15,11 @@
 		E8CBAD0C29CF7EF300CB2276 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBAD0229CF7EF300CB2276 /* SettingsViewController.swift */; };
 		E8CBAD0D29CF7EF300CB2276 /* DiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8CBAD0329CF7EF300CB2276 /* DiceViewController.xib */; };
 		E8CBAD0E29CF7EF300CB2276 /* DiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8CBAD0429CF7EF300CB2276 /* DiceView.xib */; };
-		E8CBAD0F29CF7EF300CB2276 /* ColorSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8CBAD0529CF7EF300CB2276 /* ColorSelectionViewController.xib */; };
 		E8CBAD1029CF7EF300CB2276 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8CBAD0629CF7EF300CB2276 /* SettingsViewController.xib */; };
 		E8CBAD1129CF7EF300CB2276 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBAD0729CF7EF300CB2276 /* UIDevice.swift */; };
 		E8CBAD1229CF7EF300CB2276 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBAD0829CF7EF300CB2276 /* UINavigationController.swift */; };
 		E8CBAD1329CF7EF300CB2276 /* DiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBAD0929CF7EF300CB2276 /* DiceViewController.swift */; };
 		E8CBAD1429CF7EF300CB2276 /* DiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBAD0A29CF7EF300CB2276 /* DiceView.swift */; };
-		E8CBAD1529CF7EF300CB2276 /* ColorSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBAD0B29CF7EF300CB2276 /* ColorSelectionViewController.swift */; };
 		E8E1FE2929CF75E6001E8E7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E1FE2829CF75E6001E8E7A /* AppDelegate.swift */; };
 		E8E1FE2B29CF75E6001E8E7A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E1FE2A29CF75E6001E8E7A /* SceneDelegate.swift */; };
 		E8E1FE2D29CF75E6001E8E7A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E1FE2C29CF75E6001E8E7A /* MainViewController.swift */; };
@@ -32,6 +30,8 @@
 		E8E41BDC29D0CEB500619BB3 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E41BDB29D0CEB500619BB3 /* Data.swift */; };
 		E8E41BDE29D0CEED00619BB3 /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E41BDD29D0CEED00619BB3 /* Numeric.swift */; };
 		E8E41BE029D0CF1C00619BB3 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E41BDF29D0CF1C00619BB3 /* UserDefaults.swift */; };
+		EAA7CC672A1E134B00662B9D /* PhotoSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA7CC652A1E134B00662B9D /* PhotoSelectionViewController.swift */; };
+		EAA7CC682A1E134B00662B9D /* PhotoSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA7CC662A1E134B00662B9D /* PhotoSelectionViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,13 +48,11 @@
 		E8CBAD0229CF7EF300CB2276 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E8CBAD0329CF7EF300CB2276 /* DiceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceViewController.xib; sourceTree = "<group>"; };
 		E8CBAD0429CF7EF300CB2276 /* DiceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceView.xib; sourceTree = "<group>"; };
-		E8CBAD0529CF7EF300CB2276 /* ColorSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorSelectionViewController.xib; sourceTree = "<group>"; };
 		E8CBAD0629CF7EF300CB2276 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		E8CBAD0729CF7EF300CB2276 /* UIDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		E8CBAD0829CF7EF300CB2276 /* UINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		E8CBAD0929CF7EF300CB2276 /* DiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiceViewController.swift; sourceTree = "<group>"; };
 		E8CBAD0A29CF7EF300CB2276 /* DiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiceView.swift; sourceTree = "<group>"; };
-		E8CBAD0B29CF7EF300CB2276 /* ColorSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSelectionViewController.swift; sourceTree = "<group>"; };
 		E8E1FE2529CF75E6001E8E7A /* MyDice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyDice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8E1FE2829CF75E6001E8E7A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8E1FE2A29CF75E6001E8E7A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +65,8 @@
 		E8E41BDB29D0CEB500619BB3 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		E8E41BDD29D0CEED00619BB3 /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
 		E8E41BDF29D0CF1C00619BB3 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		EAA7CC652A1E134B00662B9D /* PhotoSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectionViewController.swift; sourceTree = "<group>"; };
+		EAA7CC662A1E134B00662B9D /* PhotoSelectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoSelectionViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,12 +84,12 @@
 		E86AFF9129D37A4B0048F699 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				E8CBAD0B29CF7EF300CB2276 /* ColorSelectionViewController.swift */,
-				E8CBAD0529CF7EF300CB2276 /* ColorSelectionViewController.xib */,
 				E8CBAD0229CF7EF300CB2276 /* SettingsViewController.swift */,
 				E8CBAD0629CF7EF300CB2276 /* SettingsViewController.xib */,
 				E86AFF8D29D36E0B0048F699 /* ImageSlideShowViewController.swift */,
 				E86AFF8E29D36E0B0048F699 /* ImageSlideShowViewController.xib */,
+				EAA7CC652A1E134B00662B9D /* PhotoSelectionViewController.swift */,
+				EAA7CC662A1E134B00662B9D /* PhotoSelectionViewController.xib */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -233,9 +233,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAA7CC682A1E134B00662B9D /* PhotoSelectionViewController.xib in Resources */,
 				E8E1FE3529CF75E7001E8E7A /* LaunchScreen.storyboard in Resources */,
 				E8E1FE3229CF75E7001E8E7A /* Assets.xcassets in Resources */,
-				E8CBAD0F29CF7EF300CB2276 /* ColorSelectionViewController.xib in Resources */,
 				E8CBAD0E29CF7EF300CB2276 /* DiceView.xib in Resources */,
 				E86AFF9829D37D810048F699 /* Localizable.strings in Resources */,
 				E86AFF9029D36E0B0048F699 /* ImageSlideShowViewController.xib in Resources */,
@@ -296,7 +296,6 @@
 			files = (
 				E8CBAD1129CF7EF300CB2276 /* UIDevice.swift in Sources */,
 				E8CBAD1429CF7EF300CB2276 /* DiceView.swift in Sources */,
-				E8CBAD1529CF7EF300CB2276 /* ColorSelectionViewController.swift in Sources */,
 				E8E1FE2D29CF75E6001E8E7A /* MainViewController.swift in Sources */,
 				E8E41BE029D0CF1C00619BB3 /* UserDefaults.swift in Sources */,
 				E8E41BDC29D0CEB500619BB3 /* Data.swift in Sources */,
@@ -306,6 +305,7 @@
 				E829E42929FD8C300053391D /* UIWindowScene.swift in Sources */,
 				E8CBAD1229CF7EF300CB2276 /* UINavigationController.swift in Sources */,
 				E86AFF8F29D36E0B0048F699 /* ImageSlideShowViewController.swift in Sources */,
+				EAA7CC672A1E134B00662B9D /* PhotoSelectionViewController.swift in Sources */,
 				E8E1FE2B29CF75E6001E8E7A /* SceneDelegate.swift in Sources */,
 				E8CBAD0C29CF7EF300CB2276 /* SettingsViewController.swift in Sources */,
 				E8E41BDA29D0CE7000619BB3 /* UIColor.swift in Sources */,
@@ -472,6 +472,7 @@
 				DEVELOPMENT_TEAM = BSYGY3245J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyDice/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "%@";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -502,6 +503,7 @@
 				DEVELOPMENT_TEAM = BSYGY3245J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyDice/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "%@";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

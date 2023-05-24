@@ -32,3 +32,5 @@
 "sand" = "Sand";
 "water" = "Water";
 "wood" = "Wood";
+"NSPhotoLibraryUsageDescription" = "To be able to select your own photos you have to give permit to the app for these photos.";
+"MyPhotos" = "My Photos";

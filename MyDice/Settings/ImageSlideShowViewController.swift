@@ -46,6 +46,9 @@ class ImageSlideShowViewController: UIViewController, ImageSlideshowDelegate {
         slideShow?.backgroundColor = UIColor(white: 0.9, alpha: 1)
         slideShow?.pageIndicatorPosition = PageIndicatorPosition(vertical: .under)
         slideShow?.contentScaleMode = .scaleAspectFill
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("MyPhotos", comment: ""), style: .plain, target: self, action: #selector(selectOwnImage))
+        navigationItem.backButtonTitle = ""
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,5 +72,17 @@ class ImageSlideShowViewController: UIViewController, ImageSlideshowDelegate {
         callingViewController?.backgroundImage = (nil, nil)
         
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func selectOwnImage(_ sender: Any) {
+        let photoSelector = PhotoSelectionViewController(nibName: "PhotoSelectionViewController", bundle: nil)
+        
+        photoSelector.callingViewController = callingViewController
+        
+        if var currentVCs = navigationController?.viewControllers {
+            currentVCs.removeLast()
+            currentVCs.append(photoSelector)
+            navigationController?.setViewControllers(currentVCs, animated: true)
+        }
     }
 }

@@ -32,3 +32,5 @@
 "sand" = "Sand";
 "water" = "Wasser";
 "wood" = "Holz";
+"NSPhotoLibraryUsageDescription" = "Damit Sie auch Ihre eigenen Fotos auswählen zu können, müssen Sie der App Zugang zu Ihren Fotos erlauben.";
+"MyPhotos" = "Meine Fotos";

@@ -182,7 +182,7 @@ class DiceView: UIView {
                 
                 diceTime += Double(waitTime) / 1000000
                 usleep(waitTime)
-                waitTime = UInt32(powl(Double(waitTime), 1.01))
+                waitTime = UInt32(powl(Float80(Double(waitTime)), 1.01))
             }
             
             DispatchQueue.main.async {
