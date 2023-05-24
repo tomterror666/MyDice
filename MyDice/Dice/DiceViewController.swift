@@ -46,6 +46,9 @@ class DiceViewController: UIViewController {
         
         diceButton?.setTitle(NSLocalizedString("Dice", comment: ""), for: .normal)
         diceButton?.layer.cornerRadius = 8
+        diceButton?.translatesAutoresizingMaskIntoConstraints = false
+        
+        backgroundImageView?.translatesAutoresizingMaskIntoConstraints = false
         
         if let imageName = storage.string(forKey: backgroundImageNameStorageKey) {
             if let image = UIImage(named: imageName) {
@@ -107,8 +110,9 @@ class DiceViewController: UIViewController {
         let distances = 20.0
         
         let topDistance = UIDevice.current.isIPhoneX() ? 128.0 : 104.0
+        let bottomDistance = UIDevice.current.isIPhoneX() ? 75.0 : 55.0
         let scenes = UIApplication.shared.connectedScenes as? Set<UIWindowScene>
-        guard let dicesRatio = scenes?.first?.getPiecesRatio(numberOfElements: number, outerDistance: distances, innerDistance: distances, topDistance: topDistance) else {return}
+        guard let dicesRatio = scenes?.first?.getPiecesRatio(numberOfElements: number, outerDistance: distances, innerDistance: distances, topDistance: topDistance, bottomDistance: bottomDistance) else {return}
         let size = dicesRatio.size
         
         view.subviews.forEach { subView in
@@ -122,6 +126,7 @@ class DiceViewController: UIViewController {
         for counter in 0...number - 1 {
             let dice = Bundle.main.loadNibNamed("DiceView", owner: nil)?.first as! DiceView
             
+            //dice.translatesAutoresizingMaskIntoConstraints = false
             dice.bounds.size = CGSize(width: size, height: size)
             dice.frame.origin = CGPoint(x: distances + Double(counter % dicesRatio.horizontal) * (size + distances), y: topDistance + Double(counter / dicesRatio.horizontal) * (size + distances))
             

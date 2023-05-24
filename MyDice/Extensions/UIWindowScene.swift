@@ -27,18 +27,18 @@ class DicesRatio {
 }
 
 extension UIWindowScene {
-    func getPiecesRatio(numberOfElements: Int, outerDistance: CGFloat, innerDistance: CGFloat, topDistance: CGFloat = 0) -> DicesRatio {
+    func getPiecesRatio(numberOfElements: Int, outerDistance: CGFloat, innerDistance: CGFloat, topDistance: CGFloat = 0, bottomDistance: CGFloat = 0) -> DicesRatio {
         guard let screen = windows.first?.screen, let screenSize = screen.currentMode?.size else { return DicesRatio((0, 0, 0.0)) }
         let width = screenSize.width / screen.scale - 2 * outerDistance
         
         if numberOfElements == 0 {return DicesRatio((0, 0, 0.0))}
         if numberOfElements == 1 {return DicesRatio((1, 1, width))}
             
-        let maxHeight = screenSize.height / screen.scale - 2 * outerDistance - topDistance
+        let maxHeight = screenSize.height / screen.scale - 2 * outerDistance - topDistance - bottomDistance
         let endVal = Int(ceil(sqrt(Double(numberOfElements))))
         
         for counter in (1...endVal) {
-            let usedElementWidth = (width - CGFloat((counter - 1)) * innerDistance) / CGFloat(counter)
+            let usedElementWidth = scaledRound((width - CGFloat((counter - 1)) * innerDistance) / CGFloat(counter))
             let verticalNumbers = ceil(CGFloat(numberOfElements) / CGFloat(counter))
             let resultingHeight = verticalNumbers * usedElementWidth + (verticalNumbers - 1) * innerDistance
             
@@ -47,12 +47,13 @@ extension UIWindowScene {
             }
         }
         
-        /*let ratio = CGFloat(width) / CGFloat(maxHeight)
-        let horizontal = Int(ceil(sqrt(CGFloat(numberOfElements) * ratio)))
-        let vertical = Int(ceil((CGFloat(numberOfElements) / CGFloat(horizontal))))
-        let size = floor((width - CGFloat((horizontal - 1)) * innerDistance) / CGFloat(horizontal))
-        return DicesRatio(horizontal: horizontal, vertical: vertical, size: size)*/
-        
         return DicesRatio((0, 0, 0.0))
+    }
+    
+    private func scaledRound(_ value: CGFloat) -> CGFloat {
+        guard let screen = windows.first?.screen else { return 0.0 }
+        let scale = screen.scale
+        
+        return round(value * scale) / scale
     }
 }
